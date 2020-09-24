@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+    master:
+      image: mariadb:10
+      restart: always
+      volumes:
+          - ./master.cnf:/etc/mysql/conf.d/master.cnf
+      environment:
+        MYSQL_ROOT_PASSWORD: mainz
+      
+    slave1: 
+      image: mariadb:10
+      restart: always
+      volumes:
+          - ./slave1.cnf:/etc/mysql/conf.d/slave1.cnf
+      environment:
+        MYSQL_ROOT_PASSWORD: mainz
+    slave2: 
+      image: mariadb:10
+      restart: always
+      volumes:
+          - ./slave2.cnf:/etc/mysql/conf.d/slave2.cnf
+      environment:
+        MYSQL_ROOT_PASSWORD: mainz
+    
+    adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8085:8080
