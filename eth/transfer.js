@@ -1,7 +1,27 @@
 const {web, estateContract, accounts} = require('./lib')
 
+const allow = async (from, tokenId) => {
+    const meth = estateContract.methods.allow(
+        tokenId
+    );
+    
+    const gas = await meth.estimateGas({
+        from: from.address,
+    })
+    const res = await meth.send({
+        from: from.address,
+        gas
+    })
+
+    return res;
+
+}
 const transfer = async (from, to, tokenId ) => {
 
+    const allowance = await allow(from, tokenId);
+    if (!allowance)
+        return;
+        
     const meth = estateContract.methods.safeTransferFrom(
         from.address, to.address, tokenId
     );

@@ -8,6 +8,8 @@ contract RealEstateToken is ERC721 {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
+    mapping(uint256 => bool) allowances;
+
     constructor() public ERC721("REAL Estate", "RST") {}
 
     function mintEstate(address initialOwner, string memory estateName)
@@ -21,5 +23,20 @@ contract RealEstateToken is ERC721 {
         _setTokenURI(newItemId, estateName);
 
         return newItemId;
+    }
+
+    function allow(uint256 tokenId) public {
+        require(msg.sender == ownerOf(tokenId), "only the owner may approve!");
+        allowances[tokenId] = true;
+    }
+
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) public override {
+        require(allowances[tokenId] == true, "you must allow that first!");
+        super.safeTransferFrom(from, to, tokenId);
+        allowances[tokenId] = false;
     }
 }
