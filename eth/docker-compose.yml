@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  geth:
+    image: ethereum/client-go:latest
+    ports:
+      - "7546:8545"
+    volumes:
+      - ./.geth:/geth-data
+    command: --datadir /geth-data --dev --http  --http.corsdomain * --http.addr 0.0.0.0 --http.api "admin,db,eth,miner,net,web3,personal,txpool"
+
+  ganache:
+    image: trufflesuite/ganache-cli
+    entrypoint:
+      - node
+      - /app/ganache-core.docker.cli.js
+      - --deterministic
+      - --db=/ganache_data
+      - --mnemonic=minimum symptom minute gloom tragic situate silver mechanic salad amused elite hotel
+      - --networkId=5779
+      - --gasPrice=5e9
+    volumes:
+      - .ganache:/ganache_data
+    ports:
+      - "7545:8545"
+
+
+#eth.sendTransaction({from:eth.coinbase, to:"0x8Dccb0559a7c33e9e612537840600dAaaEFE18A9", value: web3.toWei(200, "ether")})

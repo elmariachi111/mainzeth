@@ -56,12 +56,22 @@ async function start(nodeId, address) {
     const app = initApp();
     
     app.get('/', (req, res) => {
-        res.send(`Server ${nodeId} is running`)
+        res.json({
+            server: nodeId,
+            dbAddress: orbitDb.address.toString(),
+            identity: orbitDb.identity.toJSON()
+        })
     })
 
     app.post('/grant/:publickey', async (req, res) => {
-        await orbitDb.access.grant('write', req.params.publickey) 
-        res.json({granted: req.params.publickey})
+        try {
+            await orbitDb.access.grant('write', req.params.publickey) 
+            res.json({granted: req.params.publickey})    
+        } catch (e) {
+            res.status(500).json({
+                error: e.message
+            })
+        }
     })
 
     app.get('/store/:key', (req, res) => {
