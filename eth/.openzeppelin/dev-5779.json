@@ -1,0 +1,14 @@
+{
+  "contracts": {},
+  "solidityLibs": {},
+  "proxies": {
+    "eth/RealEstateToken": [
+      {
+        "address": "0x4387497A2231C0c9dc3f62E29ED635282561beEe",
+        "kind": "NonProxy",
+        "bytecodeHash": "548cb59801a16faa42537aeaf07ab83e9605d184e4880d526a768c0cce171216"
+      }
+    ]
+  },
+  "manifestVersion": "2.2"
+}
