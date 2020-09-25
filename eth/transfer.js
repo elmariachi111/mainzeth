@@ -1,4 +1,4 @@
-const {web, estateContract, accounts} = require('./lib')
+const {web3, estateContract, accounts} = require('./lib')
 
 const allow = async (from, tokenId) => {
     const meth = estateContract.methods.allow(
@@ -47,4 +47,5 @@ const transfer = async (from, to, tokenId ) => {
 
     const b = await transfer(from, to, tokenId);
     console.log(b)
+    web3.currentProvider.connection.close()
 })()

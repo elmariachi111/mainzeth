@@ -1,4 +1,4 @@
-const {web, estateContract, accounts} = require('./lib')
+const {web3, estateContract, accounts} = require('./lib')
 
 const mintNewEstate = async (account, name) => {
 
@@ -23,4 +23,5 @@ const mintNewEstate = async (account, name) => {
     const name = process.argv[3]
     const b = await mintNewEstate(account, name);
     console.log(b)
+    web3.currentProvider.connection.close()
 })()

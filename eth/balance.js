@@ -1,4 +1,4 @@
-const {estateContract, accounts} = require('./lib')
+const {estateContract, accounts, web3} = require('./lib')
 
 const tokenMeta = async(account, index) => {
     const tokenId = await estateContract.methods.tokenOfOwnerByIndex(account.address, index).call({
@@ -13,7 +13,6 @@ const tokenMeta = async(account, index) => {
     }
 }
 const bal = async (account) => {
-    //return await web3.eth.getBalance(account.address);
     const tokenBalance = await estateContract.methods.balanceOf(account.address).call({
         from: account.address,
     })
@@ -40,4 +39,6 @@ const bal = async (account) => {
     const b = await bal(account);
     console.log("total", b.total);
     console.table(b.tokens)
+    
+    web3.currentProvider.connection.close()
 })()
