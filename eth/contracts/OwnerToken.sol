@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: Unlicensed
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC20/ERC20.sol";
 
-contract OwnerToken is ERC20 {
+contract OwnerToken is ERC20UpgradeSafe {
 
     uint256 private constant INITIAL_SUPPLY = 10000;
 
-    constructor(string memory name, string memory symbol) public ERC20(name, symbol) {
-
+    function initialize(string memory name, string memory symbol) public initializer {
+        __ERC20_init(name, symbol);
+        //_setupDecimals(0);
         _mint(msg.sender, INITIAL_SUPPLY);
     }
 }

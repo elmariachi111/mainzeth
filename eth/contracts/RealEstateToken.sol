@@ -1,17 +1,19 @@
 // SPDX-License-Identifier: Unlicensed
 pragma solidity ^0.6.12;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol';
+import "@openzeppelin/contracts-ethereum-package/contracts/utils/Counters.sol";
 import "./OwnerToken.sol";
 
-contract RealEstateToken is ERC721 {
+contract RealEstateToken is ERC721UpgradeSafe {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
     mapping(uint256 => OwnerToken) public ownerTokens;
 
-    constructor() public ERC721("REAL Estate", "RST") {}
+    function initialize() public initializer {
+        __ERC721_init('REAL Estate', 'RST');
+    }
 
     function mintEstate(address initialOwner, string memory estateName)
         public
@@ -26,7 +28,9 @@ contract RealEstateToken is ERC721 {
         string memory otName = string(abi.encodePacked("Owner Token ", newItemId));
         string memory otSymbol = string(abi.encodePacked("RE", newItemId));
 
-        OwnerToken _token = new OwnerToken(otName, otSymbol);
+        OwnerToken _token = new OwnerToken();
+        _token.initialize(otName, otSymbol);
+
         _token.transfer(initialOwner, 10000);
         ownerTokens[newItemId] = _token;
 
