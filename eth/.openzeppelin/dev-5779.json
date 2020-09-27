@@ -4,29 +4,9 @@
   "proxies": {
     "eth/RealEstateToken": [
       {
-        "address": "0x4387497A2231C0c9dc3f62E29ED635282561beEe",
+        "address": "0x31313F8411C0861DBdaA6A810c0B285696ec27c1",
         "kind": "NonProxy",
-        "bytecodeHash": "548cb59801a16faa42537aeaf07ab83e9605d184e4880d526a768c0cce171216"
-      },
-      {
-        "address": "0xE5437E36B09620176e33F4e833B3397d2cB2f091",
-        "kind": "NonProxy",
-        "bytecodeHash": "c487eb8d2c4d12b8c59f13d540def4f095ae92b716ee3d4a004f7d946a0f5030"
-      },
-      {
-        "address": "0xb3940f880FB29B0bb679c3231a64EccBcB03a9ef",
-        "kind": "NonProxy",
-        "bytecodeHash": "91a61c3f8f5c797ccbd48c007b0fda265892dd435ce2b108b3daf69ddba13390"
-      },
-      {
-        "address": "0x0deD98d62e1456F522f0a229d1262428732F11F6",
-        "kind": "NonProxy",
-        "bytecodeHash": "91a61c3f8f5c797ccbd48c007b0fda265892dd435ce2b108b3daf69ddba13390"
-      },
-      {
-        "address": "0xc10Ed0d0f51e73e66542CBf8B4Ab23d0921bAAD2",
-        "kind": "NonProxy",
-        "bytecodeHash": "e7e07de1a1c759ae935c2e7905b443a248ceb09f1252b24fd925b241847902ae"
+        "bytecodeHash": "e2aeae41a8616eaf87f01bdbe993f4c4ad06d5bc3f9dcec8eea1341b5910be58"
       }
     ]
   },

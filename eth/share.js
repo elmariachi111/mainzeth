@@ -1,13 +1,13 @@
 const {web3, estateContract, accounts, allow} = require('./lib')
 
-const transfer = async (from, to, tokenId) => {
+const share = async (from, to, tokenId, amount) => {
 
-    const allowance = await allow(from, tokenId);
+    const allowance = await allow(from, tokenId, amount);
     if (!allowance)
         throw new Error("not allowed");
     
-    const meth = estateContract.methods.safeTransferFrom(
-        from.address, to.address, tokenId
+    const meth = estateContract.methods.share(
+        to.address, amount, tokenId
     );
 
     const gas = await meth.estimateGas({
@@ -25,11 +25,12 @@ const transfer = async (from, to, tokenId) => {
     const acc_from = process.argv[2] || 0
     const acc_to = process.argv[3] || 1
     const tokenId = process.argv[4]
+    const amount = process.argv[5]
 
     const from = accounts[Object.keys(accounts)[acc_from]]
     const to = accounts[Object.keys(accounts)[acc_to]]
 
-    const b = await transfer(from, to, tokenId);
+    const b = await share(from, to, tokenId, amount);
     console.log(b)
     web3.currentProvider.connection.close()
 })()

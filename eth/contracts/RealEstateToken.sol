@@ -9,7 +9,6 @@ contract RealEstateToken is ERC721 {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    mapping(uint256 => bool) allowances;
     mapping(uint256 => OwnerToken) public ownerTokens;
 
     constructor() public ERC721("REAL Estate", "RST") {}
@@ -34,14 +33,19 @@ contract RealEstateToken is ERC721 {
         return newItemId;
     }
 
-    function getOwnerTokenAddress(uint256 estateTokenId) public returns (address) 
+    function getOwnerTokenAddress(uint256 estateTokenId) public view returns (address) 
     {
         return address(ownerTokens[estateTokenId]);
     }
 
-    function allow(uint256 tokenId) public {
-        require(msg.sender == ownerOf(tokenId), "only the owner may approve!");
-        allowances[tokenId] = true;
+    function hasMajority(address from, uint256 tokenId) public view returns (bool)
+    {
+        return ownerTokens[tokenId].balanceOf(from) > 5000;
+    }
+
+    function shareOf(address from, uint256 tokenId) public view returns (uint256) 
+    {
+        return ownerTokens[tokenId].balanceOf(from);
     }
 
     function safeTransferFrom(
@@ -49,8 +53,13 @@ contract RealEstateToken is ERC721 {
         address to,
         uint256 tokenId
     ) public override {
-        require(allowances[tokenId] == true, "you must allow that first!");
+        require(hasMajority(from, tokenId));
+        uint256 myShare = ownerTokens[tokenId].balanceOf(from);
+        ownerTokens[tokenId].transferFrom(from, to, myShare);
         super.safeTransferFrom(from, to, tokenId);
-        allowances[tokenId] = false;
+    }
+
+    function share(address to, uint256 amt, uint256 tokenId) public returns (bool) {
+        return ownerTokens[tokenId].transferFrom(msg.sender, to, amt);
     }
 }
