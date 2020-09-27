@@ -38,12 +38,12 @@ const transfer = async (from, to, tokenId ) => {
 }
 
 (async () => {
-    const acc_f = process.argv[2] || 0
-    const acc_t = process.argv[3] || 1
+    const acc_from = process.argv[2] || 0
+    const acc_to = process.argv[3] || 1
     const tokenId = process.argv[4]
 
-    const from = accounts[Object.keys(accounts)[acc_f]]
-    const to = accounts[Object.keys(accounts)[acc_t]]
+    const from = accounts[Object.keys(accounts)[acc_from]]
+    const to = accounts[Object.keys(accounts)[acc_to]]
 
     const b = await transfer(from, to, tokenId);
     console.log(b)

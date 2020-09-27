@@ -1,4 +1,5 @@
 const {estateContract, accounts, web3} = require('./lib')
+const OwnerTokenAbi = require('./build/contracts/OwnerToken.json'); 
 
 const tokenMeta = async(account, index) => {
     const tokenId = await estateContract.methods.tokenOfOwnerByIndex(account.address, index).call({
@@ -7,9 +8,16 @@ const tokenMeta = async(account, index) => {
     const tokenUri = await estateContract.methods.tokenURI(tokenId).call({
         from: account.address
     })
+    const ownerTokenAddr = await estateContract.methods.getOwnerTokenAddress(tokenId).call()
+
+    const ownerTokenContract = new web3.eth.Contract(OwnerTokenAbi.abi, ownerTokenAddr);
+    const otBalance = await ownerTokenContract.methods.balanceOf(account.address).call();
+
     return {
         tokenId,
-        tokenUri
+        tokenUri,
+        ownerTokenAddress: ownerTokenAddr,
+        otBalance
     }
 }
 const bal = async (account) => {
@@ -32,13 +40,16 @@ const bal = async (account) => {
 
 (async () => {
 
-    const acc = process.argv[2] || 0
-    const account = accounts[Object.keys(accounts)[acc]]
-    console.log(account.address);
-
-    const b = await bal(account);
-    console.log("total", b.total);
-    console.table(b.tokens)
+    try {
+        const acc = process.argv[2] || 0
+        const account = accounts[Object.keys(accounts)[acc]]
+        console.log(account.address);
     
-    web3.currentProvider.connection.close()
+        const b = await bal(account);
+        console.log("total", b.total);
+        console.table(b.tokens)
+    } finally {
+        web3.currentProvider.connection.close()
+    }
+    
 })()

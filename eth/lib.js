@@ -9,7 +9,9 @@ const web3 = new Web3(localProvider)
 const pk1 = "0xe4ef7ba7b4d6d594a81b274f602770eeea7cee2212bfc6720dd510ff50a5846a";
 const pk2 = "0xe5b73a45214b92ae726bc431aa67dd9766a60a1c81415819cf903df2f2691a69";
 
-const estateContractAddr = '0x0deD98d62e1456F522f0a229d1262428732F11F6'
+const estateContractAddr = '0xc10Ed0d0f51e73e66542CBf8B4Ab23d0921bAAD2';
+
+//'0x0deD98d62e1456F522f0a229d1262428732F11F6'
 
 const account = web3.eth.accounts.privateKeyToAccount(pk1);
 const account2 = web3.eth.accounts.privateKeyToAccount(pk2);
