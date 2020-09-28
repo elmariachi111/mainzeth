@@ -57,10 +57,16 @@ contract RealEstateToken is ERC721UpgradeSafe {
         address to,
         uint256 tokenId
     ) public override {
-        require(hasMajority(from, tokenId));
+        require(hasMajority(from, tokenId), "you must have the majority of owner tokens to transfer this");
         uint256 myShare = ownerTokens[tokenId].balanceOf(from);
         ownerTokens[tokenId].transferFrom(from, to, myShare);
         super.safeTransferFrom(from, to, tokenId);
+    }
+
+    function transferFrom(
+        address sender, address recipient, uint256 tokenId
+    ) public override {
+        return safeTransferFrom(sender, recipient, tokenId);
     }
 
     function share(address to, uint256 amt, uint256 tokenId) public returns (bool) {

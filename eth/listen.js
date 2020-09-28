@@ -10,5 +10,3 @@ emitter.on("data", (evt) => {
         evt.returnValues.to
     )
 })
-
-//while(true);

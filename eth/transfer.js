@@ -28,8 +28,13 @@ const transfer = async (from, to, tokenId) => {
 
     const from = accounts[Object.keys(accounts)[acc_from]]
     const to = accounts[Object.keys(accounts)[acc_to]]
-
-    const b = await transfer(from, to, tokenId);
-    console.log(b)
-    web3.currentProvider.connection.close()
+    try {
+        const b = await transfer(from, to, tokenId);
+        console.log(b)
+    }
+    catch(e) {
+        console.error(e);
+    } finally {
+        web3.currentProvider.connection.close()
+    }
 })()

@@ -1,11 +1,11 @@
 {
   "contracts": {
     "RealEstateToken": {
-      "address": "0xc87DCEE92a00351fff8e3d1ABC74326f542dA581",
-      "constructorCode": "608060405234801561001057600080fd5b5061560a806100206000396000f3fe",
-      "bodyBytecodeHash": "9ea8e557a99e00c64e00a3454651f8616bd6f74c3966e29625c5e1c97b2c812f",
-      "localBytecodeHash": "de26f7b6f476a7030049a8921fd76ad9d62cdd8599d07c4c825d6dbaf94722d0",
-      "deployedBytecodeHash": "de26f7b6f476a7030049a8921fd76ad9d62cdd8599d07c4c825d6dbaf94722d0",
+      "address": "0xEb3260FBEa4db4c075d86922C20A175811219cBA",
+      "constructorCode": "608060405234801561001057600080fd5b5061562b806100206000396000f3fe",
+      "bodyBytecodeHash": "be2d41edada4aea7d2da99975e8ee586113b593c6268230e9998a8fa50060dd8",
+      "localBytecodeHash": "cd61506315b35694ff28a56939dc54849414b96fe74bc2f54dd6433deb19071a",
+      "deployedBytecodeHash": "cd61506315b35694ff28a56939dc54849414b96fe74bc2f54dd6433deb19071a",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -321,7 +321,7 @@
           "label": "_tokenIds",
           "astId": 3262,
           "type": "t_struct<Counters.Counter>",
-          "src": "494:34:18"
+          "src": "351:34:18"
         },
         {
           "contract": "RealEstateToken",
@@ -329,7 +329,7 @@
           "label": "ownerTokens",
           "astId": 3266,
           "type": "t_mapping<t_address>",
-          "src": "535:49:18"
+          "src": "392:49:18"
         }
       ],
       "warnings": {
@@ -337,7 +337,34 @@
         "hasSelfDestruct": false,
         "hasDelegateCall": false,
         "hasInitialValuesInDeclarations": false,
-        "uninitializedBaseContracts": []
+        "uninitializedBaseContracts": [],
+        "storageUncheckedVars": [
+          {
+            "contract": "ERC721UpgradeSafe",
+            "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+            "label": "_holderTokens",
+            "astId": 1063,
+            "type": "t_mapping<t_struct<EnumerableSet.UintSet>>",
+            "src": "1211:64:7"
+          },
+          {
+            "contract": "ERC721UpgradeSafe",
+            "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+            "label": "_tokenOwners",
+            "astId": 1065,
+            "type": "t_struct<EnumerableMap.UintToAddressMap>",
+            "src": "1339:51:7"
+          },
+          {
+            "contract": "RealEstateToken",
+            "path": "contracts/RealEstateToken.sol",
+            "label": "_tokenIds",
+            "astId": 3262,
+            "type": "t_struct<Counters.Counter>",
+            "src": "351:34:18"
+          }
+        ],
+        "storageDiff": []
       }
     }
   },
@@ -352,7 +379,7 @@
       {
         "address": "0x8a5a55897fb29AB97f29676eaEc1D6237669a954",
         "version": "1.0.0",
-        "implementation": "0xc87DCEE92a00351fff8e3d1ABC74326f542dA581",
+        "implementation": "0xEb3260FBEa4db4c075d86922C20A175811219cBA",
         "admin": "0x6B18a4d890d05bE87F286e74b8f4bF98715943AA",
         "kind": "Upgradeable"
       }
