@@ -1,6 +1,6 @@
 {
   "manifestVersion": "2.2",
-  "contracts": {},
+  "contracts": [],
   "dependencies": {},
   "name": "eth",
   "version": "1.0.0",

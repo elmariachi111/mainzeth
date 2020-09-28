@@ -4,7 +4,7 @@
   "proxies": {
     "eth/RealEstateToken": [
       {
-        "address": "0x31313F8411C0861DBdaA6A810c0B285696ec27c1",
+        "address": "0xeF5755E84b30282cf89f7EBdA432D1946Ff5453A",
         "kind": "NonProxy",
         "bytecodeHash": "e2aeae41a8616eaf87f01bdbe993f4c4ad06d5bc3f9dcec8eea1341b5910be58"
       }
