@@ -11,10 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "@elmariachi111/openzeppelin-cli": "^2.8.4",
-    "@openzeppelin/upgradeability-transpiler": "npm:@elmariachi111/upgradeability-transpiler@^0.1.1",
-    "@openzeppelin/upgrades": "npm:@elmariachi111/openzeppelin-upgrades@^2.8.4",
     "@openzeppelin/contracts": "^3.2.0",
     "@openzeppelin/contracts-ethereum-package": "^3.0.0",
+    "@openzeppelin/upgradeability-transpiler": "npm:@elmariachi111/upgradeability-transpiler@^0.1.1",
+    "@openzeppelin/upgrades": "npm:@elmariachi111/openzeppelin-upgrades@^2.8.4",
     "ethereumjs-account": "^3.0.0",
     "ethereumjs-util": "^7.0.5",
     "leveldown": "^5.6.0",
